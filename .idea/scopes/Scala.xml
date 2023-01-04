@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Scala" pattern="!file:*.scala.semanticdb" />
+</component>

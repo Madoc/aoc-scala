@@ -1,0 +1,40 @@
+= Advent of Code in Scala
+
+My solutions for link:https://adventofcode.com/2022[Advent of Code 2022], written in Scala 3.
+
+== How to run
+
+The code is run with Scala's build tool link:https://www.scala-sbt.org[SBT].
+
+|===
+|Function |Command
+
+|Compute all solutions
+|`sbt run`
+
+|Unit tests for all problems
+|`sbt test`
+
+|Compile, lint and format code
+|`sbt localBuild`
+|===
+
+The output of `sbt run` contains the detailed solution answers, the time in milliseconds they took to compute, and a
+ little mark signifying if the solution is correct.
+(If the correct solution is not known, this will be a question mark.)
+
+The output will be ANSI colored for reading convenience.
+
+== About the code
+
+The implementations for AOC 2022 can be found in the `aoc.y2022` package.
+For every problem, there is a `*Problem` and a `*Solution` type.
+
+The `*Problem` type contains a programmatic formulation of the problem, used for pretty printing of the output and
+ validating the solution.
+The `*Solution` type contains the algorithm that computes the solution.
+
+All spoilers, i.e. correct solutions, can be found in `aoc.y2022.AOC2022Spoilers`.
+Everything is put together, i.e. problems, corresponding solutions, and spoilers, in `aoc.y2022.AOC2022`.
+
+All other packages form a micro framework for modelling and running the problems and solutions.
