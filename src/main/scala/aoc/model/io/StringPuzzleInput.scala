@@ -7,12 +7,13 @@ trait StringPuzzleInput:
 
   def foldLines[A](zero: A)(f: (A, String) => A): A =
     val buffer = StringBuilder()
-    foldCharacters(zero)((acc, ch) =>
+    val r = foldCharacters(zero)((acc, ch) =>
       ch match
         case '\r' => acc // Gracefully ignore Windows line terminators.
         case '\n' => val line = buffer.toString(); buffer.clear(); f(acc, line)
         case _ => buffer.append(ch); acc
     )
+    if buffer.nonEmpty then f(r, buffer.toString()) else r
 
 object StringPuzzleInput:
   def fromResource(path: String): StringPuzzleInput = FromInputStream(() =>

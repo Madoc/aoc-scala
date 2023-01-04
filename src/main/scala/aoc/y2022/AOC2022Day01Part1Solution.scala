@@ -1,9 +1,9 @@
 package aoc.y2022
 
 import aoc.model.problem.Solution
-import aoc.y2022.AOC2022Day01Problem.Result
+import aoc.y2022.AOC2022Day01Part1Problem.Result
 
-object AOC2022Day01Solution extends Solution[AOC2022Day01Problem, Result]:
+object AOC2022Day01Part1Solution extends Solution[AOC2022Day01Part1Problem, Result]:
   /** Accumulates the running results while reading the calorie report. Only keeps the statistics of the current elf and
    * those of the elf with the maximum calories so far. */
   private final case class State(
@@ -31,5 +31,5 @@ object AOC2022Day01Solution extends Solution[AOC2022Day01Problem, Result]:
     private def withMostCalories(elfNumber: Int, calories: Int): State =
       copy(mostCaloriesElfNumber = elfNumber, mostCalories = calories)
 
-  override def solve(problem: AOC2022Day01Problem): Result =
+  override def solve(problem: AOC2022Day01Part1Problem): Result =
     problem.calorieReport.foldLines(State())(_.processLine(_)).toResult
