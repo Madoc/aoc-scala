@@ -2,6 +2,8 @@ package aoc.model.io
 
 import java.io.{BufferedInputStream, InputStream}
 
+/** Model of a string file provided as additional input to a puzzle. Hides the detail of how exactly the file is stored.
+ */
 trait StringPuzzleInput:
   def foldCharacters[A](zero: A)(f: (A, Char) => A): A
 
@@ -22,6 +24,8 @@ object StringPuzzleInput:
     stream
   )
 
+  def fromString(data: String): StringPuzzleInput = FromString(data)
+
   private final class FromInputStream(access: () => InputStream) extends StringPuzzleInput:
     override def foldCharacters[A](zero: A)(f: (A, Char) => A): A =
       var acc = zero
@@ -35,3 +39,6 @@ object StringPuzzleInput:
             case ch => acc = f(acc, ch.toChar)
       finally stream.close()
       acc
+
+  private final case class FromString(data: String) extends StringPuzzleInput:
+    override def foldCharacters[A](zero: A)(f: (A, Char) => A): A = data.foldLeft(zero)(f)
